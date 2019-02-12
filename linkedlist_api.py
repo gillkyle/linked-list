@@ -37,22 +37,29 @@ class LinkedList(object):
 
     def add(self, item):
         '''Adds an item to the end of the linked list.'''
-        node = Node()
-        node.value = item
+        node = Node(item)
         node.next = None
         if self.head == None:
             self.head = node
+            return
+        for current in self._iter_nodes():
+            if current.next == None:
+                current.next = node
+                return
 
     def insert(self, index, item):
         '''Inserts an item at the given index, shifting remaining items right.'''
-        # prev_node = self._get_node(index - 1)
-        # next_node = self._get_node(index)
-        # if next_node is self.head:
+        new_node = Node(item)
 
-        # else:
-        #     new_node = Node()
-        #     new_node.value = item
-        #     new_node.next = next_node
+        prev_node = self._get_node(index - 1)
+        next_node = self._get_node(index)
+
+        if index == 0:
+            new_node.next = self.head
+            self.head = new_node
+        else:
+            new_node.next = next_node
+            prev_node.next = new_node
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
