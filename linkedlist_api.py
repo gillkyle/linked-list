@@ -31,7 +31,13 @@ class LinkedList(object):
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
         node = self.head
-        for i in range(1, index):
+        print("index is")
+        print(index)
+        if index > self.size - 1:
+            raise ValueError(
+                "{} is not within the bounds of the linked list".format(index))
+        for i in range(index):
+            print(node.value)
             node = node.next
         return node
 
@@ -41,10 +47,12 @@ class LinkedList(object):
         node.next = None
         if self.head == None:
             self.head = node
+            self.size += 1
             return
         for current in self._iter_nodes():
             if current.next == None:
                 current.next = node
+                self.size += 1
                 return
 
     def insert(self, index, item):
@@ -53,13 +61,17 @@ class LinkedList(object):
 
         prev_node = self._get_node(index - 1)
         next_node = self._get_node(index)
+        print(prev_node.value)
+        print(next_node.value)
 
         if index == 0:
             new_node.next = self.head
             self.head = new_node
+            self.size += 1
         else:
             new_node.next = next_node
             prev_node.next = new_node
+            self.size += 1
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
