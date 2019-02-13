@@ -31,13 +31,10 @@ class LinkedList(object):
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
         node = self.head
-        print("index is")
-        print(index)
         if index > self.size - 1:
             raise ValueError(
                 "{} is not within the bounds of the linked list".format(index))
         for i in range(index):
-            print(node.value)
             node = node.next
         return node
 
@@ -61,26 +58,37 @@ class LinkedList(object):
 
         prev_node = self._get_node(index - 1)
         next_node = self._get_node(index)
-        print(prev_node.value)
-        print(next_node.value)
 
         if index == 0:
             new_node.next = self.head
             self.head = new_node
-            self.size += 1
         else:
             new_node.next = next_node
             prev_node.next = new_node
-            self.size += 1
+        self.size += 1
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
+        target_node = self._get_node(index)
+        if target_node is not None:
+            target_node.value = item
 
     def get(self, index):
         '''Retrieves the item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
+        target_node = self._get_node(index)
+        if target_node is not None:
+            return target_node.value
 
     def delete(self, index):
         '''Deletes the item at the given index. Throws an exception if the index is not within the bounds of the linked list.'''
+        target_node = self._get_node(index)
+        if index == 0:
+            self.head = target_node.next
+            target_node.value = None
+        else:
+            prev_node = self._get_node(index - 1)
+            prev_node.next = target_node.next
+        self.size -= 1
 
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
