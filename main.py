@@ -3,7 +3,6 @@ import csv
 
 ###################
 # MAIN
-a = []
 
 
 def array_runner(command, arg1, arg2):
@@ -14,7 +13,7 @@ def array_runner(command, arg1, arg2):
     if arg2.isdigit():
         arg2 = int(arg2)
     if command == 'CREATE':
-        a = Array()
+        a = LinkedList()
     elif command == 'DEBUG':
         a.debug_print()
     elif command == 'ADD':

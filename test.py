@@ -15,7 +15,7 @@ def test():
     ll.add("c")
     ll.debug_print()
     # ll.delete(3)
-    ll.swap(0, 2)
+    ll.swap(0, 1)
     ll.debug_print()
 
     # print(ll.get(2))
