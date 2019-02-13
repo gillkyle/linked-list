@@ -92,6 +92,9 @@ class LinkedList(object):
 
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
+        node1 = self._get_node(index1)
+        node2 = self._get_node(index2)
+        node1.value, node2.value = node2.value, node1.value
 
 
 ######################################################

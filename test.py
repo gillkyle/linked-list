@@ -14,7 +14,8 @@ def test():
     ll.debug_print()
     ll.add("c")
     ll.debug_print()
-    ll.delete(3)
+    # ll.delete(3)
+    ll.swap(0, 2)
     ll.debug_print()
 
     # print(ll.get(2))
